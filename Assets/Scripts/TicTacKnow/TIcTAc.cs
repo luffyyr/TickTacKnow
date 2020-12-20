@@ -86,12 +86,14 @@ public class TIcTAc : MonoBehaviour
                 {
                     CommentBox.SetActive(true);
                     CommentBox.GetComponent<Text>().text = "You Won!";
+                    quiz_Obj.WonClip();
                     StartCoroutine(RestartGame());
                 }
                 if (solutions[i] == 3)
                 {
                     CommentBox.SetActive(true);
                     CommentBox.GetComponent<Text>().text = "You Lost!";
+                    quiz_Obj.LostClip();
                     StartCoroutine(RestartGame());
                     return;
                 }
@@ -100,7 +102,7 @@ public class TIcTAc : MonoBehaviour
 
     IEnumerator RestartGame()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // restarting the current scene
     }
 

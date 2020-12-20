@@ -15,6 +15,13 @@ public class QuizManager : MonoBehaviour
 
     public int ButtonPressed; // it will store the value what button is pressed in ticktac
 
+    public AudioClip wonClip;
+    public AudioClip lostClip;
+    public AudioClip correctClip;
+    public AudioClip WrongClip;
+
+    public AudioSource source;
+
     public TIcTAc TicTacObj;
 
     void Start()
@@ -61,22 +68,29 @@ public class QuizManager : MonoBehaviour
 
     public void Correct()
     {
+        AudioSource.PlayClipAtPoint(correctClip,transform.position);
         QA.RemoveAt(currentQuestion);            // removing the question from list so it cant be show again
         TicTacObj.UserIsCorrect(ButtonPressed);
         //GenerateQuestion();              // we have given the answers so we will generate a new question
-        ButtonPressed = -99;
+        ButtonPressed = -99;      
     }
 
     public void Wrong()
     {
+        AudioSource.PlayClipAtPoint(WrongClip, transform.position);
         QA.RemoveAt(currentQuestion);            // removing the question from list so it cant be show again
-
         TicTacObj.UserIsWrong(ButtonPressed);
         //GenerateQuestion();              // we have given the answers so we will generate a new question
         ButtonPressed = -99;
     }
 
+    public void WonClip()
+    {
+        AudioSource.PlayClipAtPoint(wonClip, transform.position);
+    }
 
-    //api related things
-
+    public void LostClip()
+    {
+        AudioSource.PlayClipAtPoint(lostClip, transform.position);
+    }
 }
