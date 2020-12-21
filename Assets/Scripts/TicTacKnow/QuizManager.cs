@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class QuizManager : MonoBehaviour
 {
-    public List<QuestionAndAnswers> QA;    // list to store all the questions/answers we have 
+    public List<QAClass> QA;    // list to store all the questions/answers we have 
     public GameObject[] options;            // this gameobject store the UI buttton for option
 
     public int currentQuestion;            // this will store the current question from the list
@@ -39,7 +39,7 @@ public class QuizManager : MonoBehaviour
         {
             currentQuestion = Random.Range(0, QA.Count);   // randomly picking the question from list 
 
-            QuestionTxt.text = QA[currentQuestion].Question;  // Displaying the text in UI gameObject 
+            QuestionTxt.text = QA[currentQuestion].questionText;  // Displaying the text in UI gameObject 
             SetAnswers(); // setting option text to button and also answers their Answer Button Gameobject i.e bool
 
         }
@@ -57,9 +57,9 @@ public class QuizManager : MonoBehaviour
         {
             options[i].GetComponent<Answer>().isCorrect = false;   // making sure that answer object of buttons contains false by default
 
-            options[i].transform.GetChild(1).GetComponent<Text>().text = QA[currentQuestion].Opts[i].AnswerText;
+            options[i].transform.GetChild(1).GetComponent<Text>().text = QA[currentQuestion].options[i].optionText;
             
-            if(QA[currentQuestion].Opts[i].AnswerID == QA[currentQuestion].CorrectAnsmwerID)
+            if(QA[currentQuestion].options[i].optionID == QA[currentQuestion].answer)
             {
                 options[i].GetComponent<Answer>().isCorrect = true;
             } 

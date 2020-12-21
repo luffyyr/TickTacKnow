@@ -34,26 +34,37 @@ public class APIHandler : MonoBehaviour
                     //Debug.Log(Result);
                     //QAClass ysr = JsonUtility.FromJson<QAClass>(Result);         //jsonUtility only support single object type 
                     QAClass[] ysr = JsonHelper.getJsonArray<QAClass>(Result);       // we created a jsonhelper class that support array 
+
+
+                    // here we are checking how many question are there in given api
+                    foreach(QAClass p in ysr)
+                    {
+                        QM.QA.Add(p);                    
+                    }
+                        //Debug.Log(QM.QA.Count);
+
                     int z = 0;
                     foreach (QAClass x in ysr)
                     {                        
                         //Debug.Log(x.questionId);
-                        QM.QA[z].QuestionID = x.questionId;
+                        QM.QA[z].questionId = x.questionId;
+
                         //Debug.Log(x.questionText);
-                        QM.QA[z].Question = x.questionText;
+                        QM.QA[z].questionText = x.questionText;
+
                         //Debug.Log(x.answer);
-                        QM.QA[z].CorrectAnsmwerID = x.answer;
+                        QM.QA[z].answer = x.answer;
+
                         int h = 0;
                         foreach (Option y in x.options)
                         {
                             //Debug.Log(y.optionText);
-                            QM.QA[z].Opts[h].AnswerText = y.optionText;
+                            QM.QA[z].options[h].optionText = y.optionText;
+
                             //Debug.Log(y.optionID);
-                            QM.QA[z].Opts[h].AnswerID = y.optionID;
-                            //Debug.Log("valuee of h is: " + h);
+                            QM.QA[z].options[h].optionID = y.optionID;
                             h++;
                         }                        
-                        //Debug.Log("valueeee of zzzz is : "+z);
                         z++;
                     }
 
@@ -62,6 +73,8 @@ public class APIHandler : MonoBehaviour
         }
     }
 }
+
+#region 
 public class JsonHelper     // we are creating a custom wrapper class to hold the array from json format
 {
     public static T[] getJsonArray<T>(string json)
@@ -77,4 +90,4 @@ public class JsonHelper     // we are creating a custom wrapper class to hold th
         public T[] array;
     }
 }
-
+#endregion  //Jason Helper Class to store the Array from jason file
