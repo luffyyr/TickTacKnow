@@ -2625,7 +2625,7 @@ GameObject:
   - component: {fileID: 1223300557}
   - component: {fileID: 1223300556}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ApiHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2643,7 +2643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739ed843e7ea05a49a496de5e1364907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://apidev.novotraxdemo.com/api/Common/GetTicTacQuestions
+  url: https://apigames.novotraxdemo.com/api/common/GetTicTacQuestions
   QM: {fileID: 1577396911}
 --- !u!4 &1223300557
 Transform:

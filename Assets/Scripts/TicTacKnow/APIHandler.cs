@@ -39,9 +39,11 @@ public class APIHandler : MonoBehaviour
                     // here we are checking how many question are there in given api
                     foreach(QAClass p in ysr)
                     {
-                        QM.QA.Add(p);                    
+                        QM.QA.Add(p);
                     }
-                        //Debug.Log(QM.QA.Count);
+                    //Debug.Log(QM.QA.Count);
+
+                    
 
                     int z = 0;
                     foreach (QAClass x in ysr)
