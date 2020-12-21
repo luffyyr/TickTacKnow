@@ -19,6 +19,7 @@ public class QuizManager : MonoBehaviour
     public AudioClip lostClip;
     public AudioClip correctClip;
     public AudioClip WrongClip;
+    public AudioClip HoverClip;
 
     public AudioSource source;
 
@@ -55,10 +56,9 @@ public class QuizManager : MonoBehaviour
         for(int i = 0; i< options.Length; i++)
         {
             options[i].GetComponent<Answer>().isCorrect = false;   // making sure that answer object of buttons contains false by default
-            //options[i].transform.GetChild(1).GetComponent<Text>().text = QA[currentQuestion].Answers[i];
+
             options[i].transform.GetChild(1).GetComponent<Text>().text = QA[currentQuestion].Opts[i].AnswerText;
             
-            //if(QA[currentQuestion].CorrectAnswer == i + 1)
             if(QA[currentQuestion].Opts[i].AnswerID == QA[currentQuestion].CorrectAnsmwerID)
             {
                 options[i].GetComponent<Answer>().isCorrect = true;
@@ -68,7 +68,7 @@ public class QuizManager : MonoBehaviour
 
     public void Correct()
     {
-        AudioSource.PlayClipAtPoint(correctClip,transform.position);
+        source.PlayOneShot(correctClip,.5f);
         QA.RemoveAt(currentQuestion);            // removing the question from list so it cant be show again
         TicTacObj.UserIsCorrect(ButtonPressed);
         //GenerateQuestion();              // we have given the answers so we will generate a new question
@@ -77,7 +77,7 @@ public class QuizManager : MonoBehaviour
 
     public void Wrong()
     {
-        AudioSource.PlayClipAtPoint(WrongClip, transform.position);
+        source.PlayOneShot(WrongClip,.5f);
         QA.RemoveAt(currentQuestion);            // removing the question from list so it cant be show again
         TicTacObj.UserIsWrong(ButtonPressed);
         //GenerateQuestion();              // we have given the answers so we will generate a new question
@@ -86,11 +86,18 @@ public class QuizManager : MonoBehaviour
 
     public void WonClip()
     {
-        AudioSource.PlayClipAtPoint(wonClip, transform.position);
+        //AudioSource.PlayClipAtPoint(wonClip, transform.position);
+        source.PlayOneShot(wonClip,.5f);
     }
 
     public void LostClip()
     {
-        AudioSource.PlayClipAtPoint(lostClip, transform.position);
+        //AudioSource.PlayClipAtPoint(lostClip, transform.position);
+        source.PlayOneShot(lostClip,.5f);
+    }
+
+    public void HoverOverSound()
+    {
+        source.PlayOneShot(HoverClip,0.01f);
     }
 }

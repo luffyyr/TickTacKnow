@@ -50,10 +50,10 @@ public class APIHandler : MonoBehaviour
                             QM.QA[z].Opts[h].AnswerText = y.optionText;
                             //Debug.Log(y.optionID);
                             QM.QA[z].Opts[h].AnswerID = y.optionID;
-                            Debug.Log("valuee of h is: " + h);
+                            //Debug.Log("valuee of h is: " + h);
                             h++;
                         }                        
-                        Debug.Log("valueeee of zzzz is : "+z);
+                        //Debug.Log("valueeee of zzzz is : "+z);
                         z++;
                     }
 

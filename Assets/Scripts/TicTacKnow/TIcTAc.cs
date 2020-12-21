@@ -102,7 +102,7 @@ public class TIcTAc : MonoBehaviour
 
     IEnumerator RestartGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // restarting the current scene
     }
 
