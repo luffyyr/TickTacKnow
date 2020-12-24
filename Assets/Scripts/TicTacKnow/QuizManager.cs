@@ -95,7 +95,6 @@ public class QuizManager : MonoBehaviour
         //AudioSource.PlayClipAtPoint(lostClip, transform.position);
         source.PlayOneShot(lostClip,.5f);
     }
-
     public void HoverOverSound()
     {
         source.PlayOneShot(HoverClip,0.01f);

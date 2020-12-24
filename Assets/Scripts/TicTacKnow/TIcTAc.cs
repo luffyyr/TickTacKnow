@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class TIcTAc : MonoBehaviour
 {
+    public static TIcTAc Instance;
+
     public Sprite[] icon;    //sprite at 0 is X and at 1 is O
     public Sprite questionIcon; //it contain question sprite
     public int turnCount;  // it counts the total tuended we played
@@ -16,21 +18,29 @@ public class TIcTAc : MonoBehaviour
     public GameObject firstComment;
         
     public QuizManager quiz_Obj;
+    public GameObject TicTacBorder;
     public GameObject questionUI;
     public GameObject OptionsUI;
+    public GameObject[] optionslist;
 
+    public GameObject YouWon;
+    public GameObject YouLost;
+    public GameObject LevelComplete;
 
-
-    void Start()
+    void Awake()
     {
-        GetReady();
+        Instance = this;
     }
 
-    void GetReady()  // preparing all the assets and gameobject components
+    public void GetReady()  // preparing all the assets and gameobject components
     {        
         firstComment.SetActive(true);   // setting all the UI component disabled
         questionUI.SetActive(false);
         OptionsUI.SetActive(false);
+        YouLost.SetActive(false);
+        LevelComplete.SetActive(false);
+        YouWon.SetActive(false);
+        TicTacBorder.SetActive(true);
 
         whoseTurn = 0;     
 
@@ -50,7 +60,7 @@ public class TIcTAc : MonoBehaviour
     {
         if(Input.GetKeyDown("space"))
         {
-            StartCoroutine(RestartGame());
+            TIcTacKnow_GameManager.Instance.LostReset();
         } //restart level
 
         CheckDraw();
@@ -84,35 +94,39 @@ public class TIcTAc : MonoBehaviour
         {
                 if(solutions[i] == 0)
                 {
-                    CommentBox.SetActive(true);
-                    CommentBox.GetComponent<Text>().text = "You Won!";
+                 //CommentBox.SetActive(true);
+                 //CommentBox.GetComponent<Text>().text = "You Won!";
+                    firstComment.SetActive(false);
+                    DisableOn();
+                    LevelComplete.SetActive(true);
                     quiz_Obj.WonClip();
-                    StartCoroutine(RestartGame());
+                    TIcTacKnow_GameManager.Instance.WinReset();
                 }
                 if (solutions[i] == 3)
                 {
-                    CommentBox.SetActive(true);
-                    CommentBox.GetComponent<Text>().text = "You Lost!";
+                 //CommentBox.SetActive(true);
+                 //CommentBox.GetComponent<Text>().text = "You Lost!";
+                    firstComment.SetActive(false);
+                    DisableOn();
+                    YouLost.SetActive(true);
                     quiz_Obj.LostClip();
-                    StartCoroutine(RestartGame());
+                    TIcTacKnow_GameManager.Instance.LostReset();
                     return;
                 }
         }  
     } // contains the results for tic tac winner
 
-    IEnumerator RestartGame()
-    {
-        yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // restarting the current scene
-    }
+    
 
     void CheckDraw()
     {
         if (turnCount == 9 && !CommentBox.activeSelf)
         {
-            CommentBox.SetActive(true);
-            CommentBox.GetComponent<Text>().text = "Draw";
-            StartCoroutine(RestartGame());
+            //CommentBox.SetActive(true);
+            //CommentBox.GetComponent<Text>().text = "Draw";
+            firstComment.SetActive(false);
+            YouLost.SetActive(true);
+            TIcTacKnow_GameManager.Instance.LostReset();
         }
     }
 
@@ -121,6 +135,11 @@ public class TIcTAc : MonoBehaviour
     {
         questionUI.SetActive(true);
         OptionsUI.SetActive(true);
+        questionUI.transform.GetChild(0).GetComponent<Text>().enabled = true;
+        foreach (GameObject x in optionslist)
+        {
+            x.transform.GetChild(1).GetComponent<Text>().enabled = true;
+        }
 
         quiz_Obj.GenerateQuestion(btnNo);
     }
@@ -133,13 +152,22 @@ public class TIcTAc : MonoBehaviour
         MarkedPlaces[btn] = 0; 
         turnCount++;
         //Debug.Log("" + turnCount);
+
+        questionUI.SetActive(false);
+        OptionsUI.SetActive(false);
+        firstComment.SetActive(true);
+        TIcTacKnow_GameManager.Instance.TotalScore += 10;
+        
         if (turnCount > 2)
         {
             WinnerCheck();
         }
-        questionUI.SetActive(false);
-        OptionsUI.SetActive(false);
-        firstComment.SetActive(true);  
+
+        /*questionUI.transform.GetChild(0).GetComponent<Text>().enabled = false;
+        foreach(GameObject x in optionslist)
+        {
+            x.transform.GetChild(1).GetComponent<Text>().enabled = false;
+        }*/
     }
 
     public void UserIsWrong(int btn)
@@ -148,14 +176,29 @@ public class TIcTAc : MonoBehaviour
         button[btn].interactable = false;
         MarkedPlaces[btn] =  1; 
         turnCount++;
-        Debug.Log("" + turnCount);
+        //Debug.Log("" + turnCount);
+
+        questionUI.SetActive(false);
+        OptionsUI.SetActive(false);
+        firstComment.SetActive(true);
+
         if (turnCount > 2)
         {
             WinnerCheck();
         }
-        questionUI.SetActive(false);
-        OptionsUI.SetActive(false);
-        firstComment.SetActive(true);  
+
+        /*questionUI.transform.GetChild(0).GetComponent<Text>().enabled = false;
+        foreach (GameObject x in optionslist)
+        {
+            x.transform.GetChild(1).GetComponent<Text>().enabled = false;
+        } */
     }
-    
+
+    private void DisableOn()
+    {
+        firstComment.SetActive(false);
+        OptionsUI.SetActive(false);
+        questionUI.SetActive(false);
+        TicTacBorder.SetActive(false);
+    }
 }
