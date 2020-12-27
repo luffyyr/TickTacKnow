@@ -27,6 +27,10 @@ public class TIcTAc : MonoBehaviour
     public GameObject YouLost;
     public GameObject LevelComplete;
 
+    public GameObject clockPrefab;
+    public Transform ClockPosition;
+
+
     void Awake()
     {
         Instance = this;
@@ -73,11 +77,12 @@ public class TIcTAc : MonoBehaviour
         // from here we will start the question 
         button[BtnNum].image.sprite = questionIcon;
 
+        Instantiate(clockPrefab, ClockPosition.transform.position,ClockPosition.rotation);
+
         // here we will check the question and get result i.e true or false
         StartKBC(BtnNum);
-
-        //ShowResult(BtnNum);
     }
+
     public void WinnerCheck()
     {
         int s1 = MarkedPlaces[0] + MarkedPlaces[1] + MarkedPlaces[2];
@@ -176,7 +181,6 @@ public class TIcTAc : MonoBehaviour
         button[btn].interactable = false;
         MarkedPlaces[btn] =  1; 
         turnCount++;
-        //Debug.Log("" + turnCount);
 
         questionUI.SetActive(false);
         OptionsUI.SetActive(false);
@@ -186,12 +190,6 @@ public class TIcTAc : MonoBehaviour
         {
             WinnerCheck();
         }
-
-        /*questionUI.transform.GetChild(0).GetComponent<Text>().enabled = false;
-        foreach (GameObject x in optionslist)
-        {
-            x.transform.GetChild(1).GetComponent<Text>().enabled = false;
-        } */
     }
 
     private void DisableOn()

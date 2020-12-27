@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TicTacKnow.unity
-    guid: 813e1a25ce245724eb9e3dbaf2065b45
-  m_configObjects: {}
+    path: Assets/_ShootyClocks/Scenes/FirstScene.unity
+  - enabled: 1
+    path: Assets/_ShootyClocks/Scenes/GameScene.unity

@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NormalClock
+  - Bullet
+  - SpeedUpClock
+  - FillGridClock
+  - BigBulletClock
+  - RightWall
+  - LeftWall
+  - TopWall
+  - BottomWall
+  - SpeedDownClock
+  - WallClock
   layers:
   - Default
   - TransparentFX
