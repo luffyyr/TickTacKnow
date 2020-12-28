@@ -21,12 +21,10 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     public int LevelNo;
 
     [Header("IdleorNot")]
-    private float afkTimer = 120;
+    public float afkTimer;
     public GameObject AFK;
 
     //these gameobjects will be disable now
-    GameObject g1;
-    GameObject g2;
 
 
     void instance()
@@ -58,6 +56,7 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     {
         ScoreTxt.text = (""+TotalScore);
         RoundText.text = (""+RoundNo);
+
 
         AFKTimer();
     }
@@ -139,16 +138,24 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     {
         if (Input.anyKey)   //checking we clicked any key while playing game or not(basically checking we are AFK or Not)
         {
-            afkTimer = 15f;
-            AFK.SetActive(false);
+            afkTimer = 60f;
+            //AFK.SetActive(false);
             Debug.Log("any key pressed");
         }
         if (afkTimer <= 0f)
         {
+            //g1 = GameObject.Find("FirstComment");
+            //g1.SetActive(false);
             //qiz = GameObject.Find("QuizManager").GetComponent<QuizManager>();
             AFK.SetActive(true);
             Debug.Log("Afk");
         }
         afkTimer -= Time.deltaTime;
+    }
+
+    public void AfkContinue()
+    {
+        afkTimer = 60f;
+        AFK.SetActive(false);
     }
 }

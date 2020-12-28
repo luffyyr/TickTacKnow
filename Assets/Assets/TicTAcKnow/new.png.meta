@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: edaf0c6acf641c645a540b883f6c7626
+guid: ce59b2de734e8714e805f773016227fa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1205673132180103376
-    second: game_tickTacKnowsadas_0
+      213: -7231304139433089348
+    second: new_0
   - first:
-      213: 7985620874362818429
-    second: game_tickTacKnowsadas_1
+      213: -4030173745488346760
+    second: new_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -42,7 +42,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -90,7 +90,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -102,7 +102,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: game_tickTacKnowsadas_0
+      name: new_0
       rect:
         serializedVersion: 2
-        x: 427
-        y: 97
-        width: 265
-        height: 271
+        x: 429
+        y: 105
+        width: 256
+        height: 257
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03f1c299ca6944fe0800000000000000
-      internalID: -1205673132180103376
+      spriteID: cb66742c23f35ab90800000000000000
+      internalID: -7231304139433089348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game_tickTacKnowsadas_1
+      name: new_1
       rect:
         serializedVersion: 2
         x: 156
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7f075720ef92de60800000000000000
-      internalID: 7985620874362818429
+      spriteID: 871cf0dc452f118c0800000000000000
+      internalID: -4030173745488346760
       vertices: []
       indices: 
       edges: []

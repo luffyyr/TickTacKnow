@@ -161,7 +161,7 @@ public class TIcTAc : MonoBehaviour
         questionUI.SetActive(false);
         OptionsUI.SetActive(false);
         firstComment.SetActive(true);
-        TIcTacKnow_GameManager.Instance.TotalScore += 10;
+        TIcTacKnow_GameManager.Instance.TotalScore += 10 * TIcTacKnow_GameManager.Instance.LevelNo;
         
         if (turnCount > 2)
         {
