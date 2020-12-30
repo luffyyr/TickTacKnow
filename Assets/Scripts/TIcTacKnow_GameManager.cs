@@ -11,6 +11,7 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     public GameObject Levels;
     public Text ScoreTxt;
     public Text RoundText;
+    public Text LevelText;
 
     public float StartTime;
     public int TotalTime;
@@ -55,6 +56,7 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     void Update()
     {
         ScoreTxt.text = (""+TotalScore);
+        LevelText.text = (""+LevelNo);
         RoundText.text = (""+RoundNo);
 
 

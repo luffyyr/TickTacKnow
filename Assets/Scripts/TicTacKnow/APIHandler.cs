@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System;
+using System.Linq;
+//using System;
 
-[Serializable]
+[System.Serializable]
 public class APIHandler : MonoBehaviour
 {
     [Header("Url")]
@@ -66,7 +67,15 @@ public class APIHandler : MonoBehaviour
                             //Debug.Log(y.optionID);
                             QM.QA[z].options[h].optionID = y.optionID;
                             h++;
-                        }                        
+                        }
+
+                        for (int t = 0; t < QM.QA[z].options.Count; t++)
+                        {
+                            Option temp = QM.QA[z].options[t];
+                            int randomIndex = Random.Range(t, QM.QA[z].options.Count);
+                            QM.QA[z].options[t] = QM.QA[z].options[randomIndex];
+                            QM.QA[z].options[randomIndex] = temp;
+                        } 
                         z++;
                     }
 

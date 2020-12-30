@@ -28,6 +28,7 @@ public class QuizManager : MonoBehaviour
     public GameObject Clock;
 
 
+
     void Start()
     {
         ButtonPressed = -99;  // just storing wrong value in it , we cant store zero cause there is 0button to 8button

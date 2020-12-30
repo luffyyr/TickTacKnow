@@ -31,6 +31,9 @@ public class TIcTAc : MonoBehaviour
     public Transform ClockPosition;
 
 
+    public bool CanWe = true;
+
+
     void Awake()
     {
         Instance = this;
@@ -64,7 +67,8 @@ public class TIcTAc : MonoBehaviour
     {
         if(Input.GetKeyDown("space"))
         {
-            TIcTacKnow_GameManager.Instance.LostReset();
+            //TIcTacKnow_GameManager.Instance.LostReset();
+            GenerateRandom();
         } //restart level
 
         CheckDraw();
@@ -72,15 +76,22 @@ public class TIcTAc : MonoBehaviour
 
     public void ButtonClicked(int BtnNum)
     {
-        firstComment.SetActive(false);
+        if (CanWe)
+        {
+            firstComment.SetActive(false);
+            button[BtnNum].interactable = false;                         //*************************
+                                                                         // we will swap position of optiosns here
 
-        // from here we will start the question 
-        button[BtnNum].image.sprite = questionIcon;
+            // from here we will start the question 
+            button[BtnNum].image.sprite = questionIcon;
 
-        Instantiate(clockPrefab, ClockPosition.transform.position,ClockPosition.rotation);
+            Instantiate(clockPrefab, ClockPosition.transform.position, ClockPosition.rotation);
 
-        // here we will check the question and get result i.e true or false
-        StartKBC(BtnNum);
+            // here we will check the question and get result i.e true or false
+            StartKBC(BtnNum);
+            CanWe = false;
+        }
+       
     }
 
     public void WinnerCheck()
@@ -140,6 +151,7 @@ public class TIcTAc : MonoBehaviour
     {
         questionUI.SetActive(true);
         OptionsUI.SetActive(true);
+
         questionUI.transform.GetChild(0).GetComponent<Text>().enabled = true;
         foreach (GameObject x in optionslist)
         {
@@ -173,6 +185,8 @@ public class TIcTAc : MonoBehaviour
         {
             x.transform.GetChild(1).GetComponent<Text>().enabled = false;
         }*/
+
+        CanWe = true;
     }
 
     public void UserIsWrong(int btn)
@@ -190,6 +204,9 @@ public class TIcTAc : MonoBehaviour
         {
             WinnerCheck();
         }
+
+
+        CanWe = true;
     }
 
     private void DisableOn()
@@ -199,4 +216,51 @@ public class TIcTAc : MonoBehaviour
         questionUI.SetActive(false);
         TicTacBorder.SetActive(false);
     }
+
+    void fn()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            int y = Random.Range(0, optionslist.Length);
+            Debug.Log("this is y" + y);
+            if (i != y)
+            {
+                RectTransform lol, lol2, tmp;
+                lol = optionslist[i].GetComponent<RectTransform>();
+                lol2 = optionslist[y].GetComponent<RectTransform>();
+                Debug.Log(lol.localPosition);
+                Debug.Log(lol2.localPosition);
+                tmp = lol;
+                lol.localPosition = lol2.localPosition;
+                lol2.localPosition = tmp.localPosition;
+                //optionslist[i].transform.position = optionslist[y].transform.position;
+                //optionslist[y].transform.position = lol;
+            }
+        }
+    }
+
+            int Lenght = 4;
+            List<int> list = new List<int>();
+            int[] h = new int[4];
+            int i = 0;
+            void GenerateRandom()
+            {
+                for (int j = 0; j < Lenght; j++)
+                {
+                    int Rand = Random.Range(0, 4);
+                    while (list.Contains(Rand))
+                    {
+                        Rand = Random.Range(0, 4);
+                    }
+                    list.Add(Rand);
+                    //print(list[j]);
+                    h[j] = list[j];
+                    print(h[i]);
+                    i++;
+                }
+                //print(h[0]);
+                //print(h[1]);
+                //print(h[2]);
+                //print(h[3]);
+            }
 }
