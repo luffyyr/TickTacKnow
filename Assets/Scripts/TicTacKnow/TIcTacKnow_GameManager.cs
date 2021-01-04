@@ -61,6 +61,10 @@ public class TIcTacKnow_GameManager : MonoBehaviour
 
 
         AFKTimer();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     IEnumerator StartGame()
@@ -159,5 +163,10 @@ public class TIcTacKnow_GameManager : MonoBehaviour
     {
         afkTimer = 60f;
         AFK.SetActive(false);
+    }
+
+    public void DestroyMe()
+    {
+        Destroy(this.gameObject);
     }
 }
