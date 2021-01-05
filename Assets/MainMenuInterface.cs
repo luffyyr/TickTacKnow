@@ -5,14 +5,12 @@ using UnityEngine;
 public class MainMenuInterface : MonoBehaviour
 {
     public GameObject Menu;
-
-    void Start()
-    {
-
-    }
+    public AudioSource audioSource;
+    public AudioClip hoverClip;
 
     public void OnPointerEnter()
     {
+        audioSource.PlayOneShot(hoverClip);
         Menu.SetActive(true);
 
     }

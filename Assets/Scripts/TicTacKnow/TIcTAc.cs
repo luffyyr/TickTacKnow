@@ -216,29 +216,6 @@ public class TIcTAc : MonoBehaviour
         questionUI.SetActive(false);
         TicTacBorder.SetActive(false);
     }
-
-    void fn()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            int y = Random.Range(0, optionslist.Length);
-            Debug.Log("this is y" + y);
-            if (i != y)
-            {
-                RectTransform lol, lol2, tmp;
-                lol = optionslist[i].GetComponent<RectTransform>();
-                lol2 = optionslist[y].GetComponent<RectTransform>();
-                Debug.Log(lol.localPosition);
-                Debug.Log(lol2.localPosition);
-                tmp = lol;
-                lol.localPosition = lol2.localPosition;
-                lol2.localPosition = tmp.localPosition;
-                //optionslist[i].transform.position = optionslist[y].transform.position;
-                //optionslist[y].transform.position = lol;
-            }
-        }
-    }
-
             int Lenght = 4;
             List<int> list = new List<int>();
             int[] h = new int[4];

@@ -5,17 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Loader : MonoBehaviour
 {
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void LoadScene()
     {
         SceneManager.LoadScene(1);

@@ -1,49 +1,34 @@
 fileFormatVersion: 2
-guid: 88d11b7b4e4f9664fac2be9ac064ffb9
+guid: 7956705d42a4d4a4f83dca6be085b86b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3246727390711586681
-    second: nav (oldgfhsdgdahhdzfd)_0
+      213: 3728761043254278411
+    second: UrBania_0
   - first:
-      213: 98222032095307356
-    second: nav (oldgfhsdgdahhdzfd)_1
+      213: -1021143342497861833
+    second: UrBania_1
   - first:
-      213: 1896994914387898898
-    second: nav (oldgfhsdgdahhdzfd)_2
+      213: 8885296370828676183
+    second: UrBania_2
   - first:
-      213: -2208907149366690123
-    second: nav (oldgfhsdgdahhdzfd)_3
+      213: 7693289166643269766
+    second: UrBania_3
   - first:
-      213: -1082161678979984254
-    second: nav (oldgfhsdgdahhdzfd)_4
+      213: -6450929649807258768
+    second: UrBania_4
   - first:
-      213: -6421483973750876211
-    second: nav (oldgfhsdgdahhdzfd)_5
+      213: 4500160787793903590
+    second: UrBania_5
   - first:
-      213: -5468241607119920714
-    second: nav (oldgfhsdgdahhdzfd)_6
+      213: -5895325139895900910
+    second: UrBania_6
   - first:
-      213: 5773071232918920647
-    second: nav (oldgfhsdgdahhdzfd)_7
+      213: 5342552260405298995
+    second: UrBania_7
   - first:
-      213: 8127483906552994957
-    second: nav (oldgfhsdgdahhdzfd)_8
-  - first:
-      213: 126349858574282985
-    second: nav (oldgfhsdgdahhdzfd)_9
-  - first:
-      213: 5767891515731380826
-    second: nav (oldgfhsdgdahhdzfd)_10
-  - first:
-      213: -5556916666332938005
-    second: nav (oldgfhsdgdahhdzfd)_11
-  - first:
-      213: 3703593976532430151
-    second: nav (oldgfhsdgdahhdzfd)_12
-  - first:
-      213: -7835876536257471847
-    second: nav (oldgfhsdgdahhdzfd)_13
+      213: 6847421135619581658
+    second: UrBania_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -153,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_0
+      name: UrBania_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 91
-        width: 42
-        height: 37
+        y: 430
+        width: 276
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97f15e52c51be0d20800000000000000
-      internalID: 3246727390711586681
+      spriteID: b097c7bb9683fb330800000000000000
+      internalID: 3728761043254278411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_1
+      name: UrBania_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 103
-        width: 78
-        height: 25
+        x: 258
+        y: 408
+        width: 232
+        height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,145 +173,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c566824fa64fc5100800000000000000
-      internalID: 98222032095307356
+      spriteID: 73fe8ad4a8b24d1f0800000000000000
+      internalID: -1021143342497861833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_2
+      name: UrBania_2
       rect:
         serializedVersion: 2
-        x: 134
-        y: 97
-        width: 39
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21230dce2da735a10800000000000000
-      internalID: 1896994914387898898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_3
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 56
-        width: 16
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5be7d24a6a26851e0800000000000000
-      internalID: -2208907149366690123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_4
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 56
-        width: 8
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2849bdebfa36bf0f0800000000000000
-      internalID: -1082161678979984254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_5
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 56
-        width: 15
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc717bd295e42e6a0800000000000000
-      internalID: -6421483973750876211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_6
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 56
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b12b95fa37ec14b0800000000000000
-      internalID: -5468241607119920714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_7
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 56
-        width: 13
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7cd982503b11e1050800000000000000
-      internalID: 5773071232918920647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_8
-      rect:
-        serializedVersion: 2
-        x: 117
-        y: 56
-        width: 13
+        x: 6
+        y: 407
+        width: 115
         height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -335,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8c9bcf3d8f9ac070800000000000000
-      internalID: 8127483906552994957
+      spriteID: 75c8f4319f9ee4b70800000000000000
+      internalID: 8885296370828676183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_9
+      name: UrBania_3
       rect:
         serializedVersion: 2
-        x: 133
-        y: 56
-        width: 9
-        height: 16
+        x: 132
+        y: 408
+        width: 115
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e0bdb5e682e0c100800000000000000
-      internalID: 126349858574282985
+      spriteID: 680122c7cbd04ca60800000000000000
+      internalID: 7693289166643269766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_10
+      name: UrBania_4
       rect:
         serializedVersion: 2
-        x: 142
-        y: 56
-        width: 14
-        height: 16
+        x: 379
+        y: 393
+        width: 92
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5a882226caab0050800000000000000
-      internalID: 5767891515731380826
+      spriteID: 07b043879a1b976a0800000000000000
+      internalID: -6450929649807258768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_11
+      name: UrBania_5
       rect:
         serializedVersion: 2
-        x: 166
-        y: 56
-        width: 20
-        height: 21
+        x: 0
+        y: 339
+        width: 117
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -398,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be007c8dbbdd1e2b0800000000000000
-      internalID: -5556916666332938005
+      spriteID: 6eff894c468c37e30800000000000000
+      internalID: 4500160787793903590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_12
+      name: UrBania_6
       rect:
         serializedVersion: 2
-        x: 188
-        y: 56
-        width: 14
-        height: 16
+        x: 118
+        y: 339
+        width: 371
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74ded73691fc56330800000000000000
-      internalID: 3703593976532430151
+      spriteID: 215231125099f2ea0800000000000000
+      internalID: -5895325139895900910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nav (oldgfhsdgdahhdzfd)_13
+      name: UrBania_7
       rect:
         serializedVersion: 2
-        x: 205
-        y: 51
-        width: 13
-        height: 21
+        x: 0
+        y: 285
+        width: 477
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -440,8 +299,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99a1e887ecf514390800000000000000
-      internalID: -7835876536257471847
+      spriteID: 3370b6b89fe842a40800000000000000
+      internalID: 5342552260405298995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UrBania_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 231
+        width: 212
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad66b106e3de60f50800000000000000
+      internalID: 6847421135619581658
       vertices: []
       indices: 
       edges: []

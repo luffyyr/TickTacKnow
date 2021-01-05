@@ -12,6 +12,8 @@ public class ClockUI : MonoBehaviour {
     private Text timeText;
     private float day;
     private bool Started =  false;
+    [SerializeField]
+    private Animator anim;
 
     public QuizManager qiz;
 
@@ -26,6 +28,7 @@ public class ClockUI : MonoBehaviour {
     private void Start()
     {
         StartCoroutine(setTrue());
+        anim = GetComponent<Animator>();
     }
     private void Update() 
     {
@@ -57,6 +60,12 @@ public class ClockUI : MonoBehaviour {
             float minutesPerHour = 60f;
             string minutesString = Mathf.Floor(((dayNormalized * hoursPerDay) % 1f) * minutesPerHour).ToString("00");
             timeText.text = hoursString + ":" + minutesString;
+            
+            if(hoursString == "25" && Started == true)
+            {
+                anim.SetTrigger("AlarmTime");
+                Debug.Log("Animating");
+            }
 
             if (hoursString == "00" && Started == true)
             {
@@ -65,4 +74,6 @@ public class ClockUI : MonoBehaviour {
                 //Started = false;
             }
     }
+
+
 }
