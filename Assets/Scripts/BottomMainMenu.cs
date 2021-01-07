@@ -29,11 +29,7 @@ public class BottomMainMenu : MonoBehaviour
     {
        // StartCoroutine(LoadingScreen());
     }
-    public void BackBtn()
-    {
-        SceneManager.LoadScene(0);
-        TIcTacKnow_GameManager.Instance.DestroyMe();
-    }
+
 
     IEnumerator LoadingScreen()
     {

@@ -146,7 +146,6 @@ public class TIcTacKnow_GameManager : MonoBehaviour
         {
             afkTimer = 60f;
             //AFK.SetActive(false);
-            Debug.Log("any key pressed");
         }
         if (afkTimer <= 0f)
         {
