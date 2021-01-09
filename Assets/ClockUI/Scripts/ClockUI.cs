@@ -17,6 +17,10 @@ public class ClockUI : MonoBehaviour {
 
     public QuizManager qiz;
 
+    public bool AlarmTime;
+    public AudioClip alamSound;
+    public AudioSource speaker;
+
     private void Awake() 
     {
         qiz = GameObject.Find("QuizManager").GetComponent<QuizManager>();
@@ -61,9 +65,10 @@ public class ClockUI : MonoBehaviour {
             string minutesString = Mathf.Floor(((dayNormalized * hoursPerDay) % 1f) * minutesPerHour).ToString("00");
             timeText.text = hoursString + ":" + minutesString;
             
-            if(hoursString == "25" && Started == true)
+            if(hoursString == "25" && Started == true && !AlarmTime)
             {
-                anim.SetTrigger("AlarmTime");
+                dosomething();
+                AlarmTime = true;
                 Debug.Log("Animating");
             }
 
@@ -75,5 +80,10 @@ public class ClockUI : MonoBehaviour {
             }
     }
 
+    void dosomething()
+    {
+        anim.SetTrigger("AlarmTime");
+        speaker.PlayOneShot(alamSound);
+    } 
 
 }

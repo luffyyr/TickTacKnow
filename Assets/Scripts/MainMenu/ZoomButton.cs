@@ -20,7 +20,7 @@ public class ZoomButton : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        audioSource.PlayOneShot(hoverClip);
+        audioSource.PlayOneShot(hoverClip,0.1F);
         if(Name!= null)
         {
             Name.SetActive(true);
@@ -32,7 +32,7 @@ public class ZoomButton : MonoBehaviour
 
     public void OnPointerExit()
     {
-        audioSource.PlayOneShot(hoverClip);
+        //audioSource.PlayOneShot(hoverClip,0.1f);
         if (Name != null)
         {
             Name.SetActive(false);
@@ -42,4 +42,6 @@ public class ZoomButton : MonoBehaviour
         transform.localScale = cachedScale;
 
     }
+
+
 }

@@ -10,13 +10,24 @@ public class MainMenuInterface : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        audioSource.PlayOneShot(hoverClip);
+        audioSource.PlayOneShot(hoverClip,0.5F);
         Menu.SetActive(true);
 
     }
 
     public void OnPointerExit()
     {
+        Menu.SetActive(false);
+    }
+
+    public void AlternateOnPointExit()
+    {
+        StartCoroutine(Dothis());
+    }
+
+    IEnumerator Dothis()
+    {
+        yield return new WaitForSeconds(2f);
         Menu.SetActive(false);
     }
 }
