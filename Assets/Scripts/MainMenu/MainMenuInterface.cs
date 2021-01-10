@@ -10,7 +10,7 @@ public class MainMenuInterface : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        audioSource.PlayOneShot(hoverClip,0.5F);
+        audioSource.PlayOneShot(hoverClip,0.1F);
         Menu.SetActive(true);
 
     }
