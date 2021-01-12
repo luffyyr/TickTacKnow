@@ -11,6 +11,7 @@ public static class Loader
         MainMenu,
         TicTacKnow,
         AllGames,
+        Demo,
     }
 
     private static Action onLoaderCallback;

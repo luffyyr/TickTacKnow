@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TicTacKnow.unity
     guid: de22b20f6e2ce574296b00b695d61df8
   - enabled: 1
+    path: Assets/Scenes/Demo.unity
+    guid: 52afae42d22c72840bad19f329d7fdd6
+  - enabled: 1
     path: Assets/Scenes/AllGames.unity
-    guid: 011aa8cf63763d549af0e08b6d27031a
+    guid: 6907ce9ce008cb244ab1a67f659f3e98
   m_configObjects: {}

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OpenGame : MonoBehaviour
-{
+ public class OpenGame : MonoBehaviour
+ {
     public Loader.Scene sceneName;
 
     private Loader.Scene previousScene;
@@ -12,6 +12,7 @@ public class OpenGame : MonoBehaviour
     public void OpenScene()
     {
         Loader.Load(sceneName);
+        Debug.Log(sceneName.ToString());
     }
     public void BackBtn()
     {
@@ -21,4 +22,4 @@ public class OpenGame : MonoBehaviour
             TIcTacKnow_GameManager.Instance.DestroyMe();
         }
     }
-}
+ }

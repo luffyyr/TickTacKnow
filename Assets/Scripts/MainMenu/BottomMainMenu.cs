@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BottomMainMenu : MonoBehaviour
 {
     public static BottomMainMenu Instance;
     public GameObject LoadingAnimation;
+
+    public bool LoggedIn = false;
+    public string UserName;
+    public Text UserNameText;
     void instance()
     {
         if (Instance != null)
@@ -30,6 +35,10 @@ public class BottomMainMenu : MonoBehaviour
        // StartCoroutine(LoadingScreen());
     }
 
+    private void Update()
+    {
+        UserNameText.text = UserName;
+    }
 
     IEnumerator LoadingScreen()
     {
