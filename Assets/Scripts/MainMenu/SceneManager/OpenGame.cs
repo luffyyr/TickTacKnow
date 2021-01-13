@@ -11,8 +11,15 @@ using UnityEngine.SceneManagement;
     
     public void OpenScene()
     {
-        Loader.Load(sceneName);
-        Debug.Log(sceneName.ToString());
+        if(BottomMainMenu.Instance.LoggedInForFun || BottomMainMenu.Instance.LoggedInForPrizes)
+        {  
+            Loader.Load(sceneName);
+            Debug.Log(sceneName.ToString());
+        }
+        else
+        {
+            BottomMainMenu.Instance.WannaPlay();
+        }
     }
     public void BackBtn()
     {

@@ -12,7 +12,6 @@ public class MainMenuInterface : MonoBehaviour
     {
         audioSource.PlayOneShot(hoverClip,0.1F);
         Menu.SetActive(true);
-
     }
 
     public void OnPointerExit()

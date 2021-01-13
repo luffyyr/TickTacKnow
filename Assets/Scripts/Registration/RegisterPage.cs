@@ -83,8 +83,8 @@ public class RegisterPage : MonoBehaviour
         Name = FirstName +" "+ LastName;
         //Debug.Log(Name);
         LogIn(App_ID, Email);
-        RegistrationPage.SetActive(false);
-        VerificationPage.SetActive(true);
+        //RegistrationPage.SetActive(false);
+        //VerificationPage.SetActive(true);
     }
 
     public void LogIn(int AppId, string Email)
@@ -121,7 +121,12 @@ public class RegisterPage : MonoBehaviour
             RootResponse obj = JsonUtility.FromJson<RootResponse>(Result);
             Debug.Log(Result);
             Debug.Log("status" + obj.status);
-            Debug.Log("status" + obj.message);             
+            Debug.Log("status" + obj.message);        
+            if(obj.status == true)
+            {
+                RegistrationPage.SetActive(false);
+                VerificationPage.SetActive(true);
+            }
         }
     }
 
@@ -169,6 +174,12 @@ public class RegisterPage : MonoBehaviour
             Debug.Log(Result);
             Debug.Log("status" + obj.status);
             Debug.Log("status" + obj.message);
+
+            if(obj.status == true)
+            {
+                BottomMainMenu.Instance.VerificationPage.SetActive(false);
+                BottomMainMenu.Instance.RegisteredUI.SetActive(true);
+            }
         }
     }
 

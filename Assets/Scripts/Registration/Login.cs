@@ -6,22 +6,19 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text;
 using SimpleJSON;
-
+/// <summary>
+/// This scripts is used when we want to login , this script send the username and password to this Api we calling
+/// </summary>
 [System.Serializable]
 public class Login : MonoBehaviour
-{
-    public TextMeshProUGUI Username;
-    public TextMeshProUGUI Password;
-    public string ysr;
-    public string user;
-    public string pass;
-    public string urlll;
+{   
+    [SerializeField]
+    private string user;
+    [SerializeField]
+    private string pass;
+    [SerializeField]
+    private string urlll;
 
-    void Start()
-    {
-        Username = GetComponent<TextMeshProUGUI>();
-        Password = GetComponent<TextMeshProUGUI>();
-    }
     public void UserName(InputField username)
     {
         user = username.text;
@@ -42,7 +39,7 @@ public class Login : MonoBehaviour
         cred.username = Username;
 
         cred.password = Password;
-        cred.novoTraxAppID = 4;
+        cred.novoTraxAppID = 5;
         var jason = JsonUtility.ToJson(cred);
         
         StartCoroutine(Push(urlll,jason));
@@ -66,14 +63,17 @@ public class Login : MonoBehaviour
         }
         else
         {
-            //Debug.Log("All OK");
             Debug.Log("Status Code: " + request.responseCode);
             string Result = Encoding.UTF8.GetString(request.downloadHandler.data);
             ApiServer obj = JsonUtility.FromJson<ApiServer>(Result);
             Debug.Log("Token is: " +obj.message);
             Debug.Log("Status is: " +obj.status);
-            Debug.Log("userRole is: " +obj.userRole);
-            Debug.Log("recordID is: " +obj.recordID);
+            if(obj.status == true)
+            {
+                BottomMainMenu.Instance.LogInPage.SetActive(false);
+                BottomMainMenu.Instance.LoggedInForPrizes = true;
+                BottomMainMenu.Instance.UserName = user;
+            }
         }
     }
 
