@@ -50,7 +50,7 @@ public class BottomMainMenu : MonoBehaviour
 
     private void Update()
     {
-        UserNameText.text = UserName;
+        //UserNameText.text = UserName;
     }
 
     IEnumerator LoadingScreen()
