@@ -13,6 +13,7 @@ public static class Loader
         AllGames,
         Demo,
         WordScramble,
+        WordSearch,
     }
 
     private static Action onLoaderCallback;

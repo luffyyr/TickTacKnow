@@ -69,6 +69,11 @@ public class WordScramble : MonoBehaviour
     public GameObject CheckObj;
     public GameObject Correct;
     public GameObject Wrong;
+    public GameObject ResetIcon;
+    public GameObject ClockPrefab;
+
+    public Transform clockPosition;
+    //public GameObject clock;
 
     private void Awake()
     {
@@ -86,8 +91,8 @@ public class WordScramble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurrentTime += Time.deltaTime;
-        DisplayTime(CurrentTime);
+        /*CurrentTime += Time.deltaTime;
+        DisplayTime(CurrentTime);*/
 
         InputText.text = inputWord;
         ScoreText.text = score.ToString();
@@ -100,10 +105,11 @@ public class WordScramble : MonoBehaviour
         Instruction.SetActive(false);
         ContainerBox.SetActive(true);
         TextBox.SetActive(true);
-        TimeObj.SetActive(true);
+        //TimeObj.SetActive(true);
         ScoreObj.SetActive(true);
         CheckObj.SetActive(true);
         Round.SetActive(true);
+        ResetIcon.SetActive(true);
         CurrentTime = 0f;
         ShowScramble(currentWord);
     }
@@ -140,6 +146,9 @@ public class WordScramble : MonoBehaviour
 
             charObjects[i].index = i;
         }
+        var clock = GameObject.Find("ClockCanvas(Clone)");
+        Destroy(clock);
+        Instantiate(ClockPrefab, clockPosition.transform.position, clockPosition.rotation);
     }
 
     /// <summary>
@@ -213,30 +222,39 @@ public class WordScramble : MonoBehaviour
         }
     }
 
-    public void Pressed(CharObject charObject)  // this is called when the button is pressed
+    public void Pressed(CharObject charObject)  // this is called when the button is pressed i.e word button
     {
         var y = charObject.character;  // we are taking his character value and storing it in local varialble y
         InputWord(y);
         charObject.GetComponent<Button>().interactable = false;
+        //charObject.Select();                                                   ////////////////////////////////////////////////////
     }
 
     public void InputWord(char y)
     {
+        // check if this button is already selected or not
+        //if not then only we will allow it to add char to our string else not
         inputWord += y;  //Adding char to the string to make a word
     }
     public void Verify()
-    {
-        if (inputWord == words[currentWord].word)
+    {      
+        if (inputWord != "")
         {
-            currentWord++;
-            CorrectAnswer();
+            if (inputWord == words[currentWord].word)
+            {
+                var clock = GameObject.Find("ClockCanvas(Clone)");
+                Destroy(clock);
+                currentWord++;
+                CorrectAnswer();
+            }
+            else
+            {
+                //open a ui to show wrong answer
+                var clock = GameObject.Find("ClockCanvas(Clone)");
+                Destroy(clock);
+                WrongAnswer();
+            }
         }
-        else
-        {
-            //open a ui to show wrong answer
-            WrongAnswer();
-        }
-
     }
     public void UnSelect()
     {
@@ -286,13 +304,57 @@ public class WordScramble : MonoBehaviour
         Wrong.SetActive(false);
         ShowScramble(currentWord);
         inputWord = "";
+        score -= 20;
+        if(score < 0)
+        {
+            score = 0;
+        }
     }
 
-    public void DeletethisChar(CharObject charObject)
+    public void DeletethisChar(CharObject cha)  // we want delete this word when pressed the button and also set interactable to true
     {
+        for(int i = 0; i < inputWord.Length; i++ )
+        {
+            if(cha.character == inputWord[i])
+            {
+                //inputWord.Remove(i);
+                //Debug.Log(inputWord);
+                print("found it ");
+                return;
+            }
+            
+        }
         // we will first take the char it contain 
         // now we will search this char in the charobj list and then remove it 
         // now we will show this button interactable again 
         // and also show the word written in the box after removing this char
+    }
+
+    public void ResetWord()  // this will reset the word and suffle the scrambled word again
+    {
+        var clock = GameObject.Find("ClockCanvas(Clone)");
+        Destroy(clock);
+        inputWord = "";
+        ShowScramble(currentWord);
+    }
+
+    public void NextQuestion()
+    {
+        StartCoroutine(nextQuestion());
+    }
+
+    IEnumerator nextQuestion()
+    {
+        yield return new WaitForSeconds(.5f);
+        Wrong.SetActive(false);
+        int i = currentWord + 1;
+        currentWord = i;
+        ShowScramble(i);
+        inputWord = "";
+        score -= 20;
+        if (score < 0)
+        {
+            score = 0;
+        }
     }
 }

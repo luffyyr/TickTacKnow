@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: e545bc5dd25449a44a07a8d252d5bcf5
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5428864317475025019
+    second: game_wordScramvdhgfhjghjgble.swf_0
+  - first:
+      213: 3835917835581328553
+    second: game_wordScramvdhgfhjghjgble.swf_1
+  - first:
+      213: 4719319444169052670
+    second: game_wordScramvdhgfhjghjgble.swf_2
+  - first:
+      213: -1059958729820120375
+    second: game_wordScramvdhgfhjghjgble.swf_3
+  - first:
+      213: 2331153540813396835
+    second: game_wordScramvdhgfhjghjgble.swf_4
+  - first:
+      213: -8835594451338776469
+    second: game_wordScramvdhgfhjghjgble.swf_5
+  - first:
+      213: -1955704789812171266
+    second: game_wordScramvdhgfhjghjgble.swf_6
+  - first:
+      213: 3071882843185593151
+    second: game_wordScramvdhgfhjghjgble.swf_7
+  - first:
+      213: 3725333466389998723
+    second: game_wordScramvdhgfhjghjgble.swf_8
+  - first:
+      213: 4563138248335636698
+    second: game_wordScramvdhgfhjghjgble.swf_9
+  - first:
+      213: -627519647936500310
+    second: game_wordScramvdhgfhjghjgble.swf_10
+  - first:
+      213: -5843549438821485016
+    second: game_wordScramvdhgfhjghjgble.swf_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +107,297 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 31
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f8b17aaacc8a4b0800000000000000
+      internalID: -5428864317475025019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 31
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac0969a2faeb3530800000000000000
+      internalID: 3835917835581328553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_2
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 47
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef15a4bc7046e7140800000000000000
+      internalID: 4719319444169052670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_3
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 31
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca5f70b6254a41f0800000000000000
+      internalID: -1059958729820120375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_4
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 31
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36b931d5bcbe95020800000000000000
+      internalID: 2331153540813396835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 31
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b603a84d8a9a16580800000000000000
+      internalID: -8835594451338776469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_6
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 31
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd27bdfad0fbd4e0800000000000000
+      internalID: -1955704789812171266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 25
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3bb1bb9b2581aa20800000000000000
+      internalID: 3071882843185593151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_8
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 31
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cec0ecc0b03b330800000000000000
+      internalID: 3725333466389998723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_9
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 31
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad83b017f06835f30800000000000000
+      internalID: 4563138248335636698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_10
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 31
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aadaa27743a9a47f0800000000000000
+      internalID: -627519647936500310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_wordScramvdhgfhjghjgble.swf_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 21
+        width: 148
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 826bc9feeba87eea0800000000000000
+      internalID: -5843549438821485016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
