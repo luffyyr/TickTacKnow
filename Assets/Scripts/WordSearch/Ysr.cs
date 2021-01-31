@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class Ysr : MonoBehaviour
 {
-    public bool useWordpool; // 'should we use the wordpool?'
-    public TextAsset wordpool; // if true, wordpool will be utilized
-
     public string[] words; // overwritten if wordpool = true
     public int maxWordCount; // max number of words used in the game to find
     public int maxWordLetters; // max length of word used 
@@ -44,6 +42,7 @@ public class Ysr : MonoBehaviour
     private float tileSize = 1;
 
     public float newPosY;
+    public Transform thisISThePosition;
 
     private static Ysr instance;
     public static Ysr Instance
@@ -61,29 +60,17 @@ public class Ysr : MonoBehaviour
 
     void Start()
     {
+        WordSearch.Instance.WordsInList = 0;
+        WordSearch.Instance.WordsInListFound = 0;
+
+        thisISThePosition = WordSearch.Instance.GridSystemPos;
         List<string> findLength = new List<string>();
         int count = 0;
 
-        /*if (useWordpool)
-        {
-            words = wordpool.text.Split(';');    //storing words in it i.e total words
-        }
-        else
-        {
-            maxWordCount = words.Length; //maxWordCount storing the total no of words we have
-        } 
-
-        if (maxWordCount <= 0) 
-        {
-            maxWordCount = 1; 
-        } */
-
         Mix(words); // we are now suffling the list that contain the words 
 
-
-
         Mathf.Clamp(maxWordLetters, 0, gridY < gridX ? gridX : gridY);  //setting maxwordletter value here based on our grid size
-        Debug.Log(maxWordLetters);
+        //Debug.Log(maxWordLetters);
 
         while (findLength.Count < maxWordCount + 1)  //taking words from our words list 
         {
@@ -114,9 +101,27 @@ public class Ysr : MonoBehaviour
 
 
         FillRemaining();
-        time = Time.time;
+        //time = Time.time;
 
-        transform.position = new Vector3(transform.position.x, newPosY, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, newPosY, transform.position.z);
+        transform.position = thisISThePosition.transform.position;
+
+        // now we will show words to in the UI WordList 
+
+        foreach (KeyValuePair<string, bool> p in insertedWords)
+        {
+            //GUILayout.Label(p.Key +"\n");
+            WordSearch.Instance.WordList += p.Key + "\n";
+            WordSearch.Instance.WordsInList += 1;
+        }
+
+        //Debug.Log(WordSearch.Instance.WordsInList);
+        var scaleSize = transform.localScale; 
+
+        transform.localScale = new Vector3(0f, 0f, 0f);
+        //transform.DOScale(new Vector3(0f, 0f, 0f), 0f).OnComplete(() => { transform.DOScale(scaleSize, .5f); });
+        transform.DOScale(scaleSize, .5f);
+        WordSearch.Instance.Level.SetActive(true);
     }
 
     /// <summary>
@@ -138,9 +143,9 @@ public class Ysr : MonoBehaviour
     {
         GameObject referenceTile = (GameObject)Instantiate(Resources.Load("TileA"));
 
-        for (int i = 0; i < rows; i++)   // Instantating tiles in the gameobject 
+        for (int i = 0; i < gridX; i++)   // Instantating tiles in the gameobject 
         {
-            for (int j = 0; j < cols; j++)
+            for (int j = 0; j < gridY; j++)
             {
                 GameObject tile = (GameObject)Instantiate(referenceTile, transform);
 
@@ -161,10 +166,10 @@ public class Ysr : MonoBehaviour
 
         Destroy(referenceTile);
 
-        float gridW = tileSize * cols;
-        float gridH = tileSize * rows;
+        float gridW = tileSize * gridY;
+        float gridH = tileSize * gridX;
 
-        transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);  // changing the position of this gameObject
+        //transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);  // changing the position of this gameObject
     }
 
     private void CenterBG() //function to move grid to center of the screen
@@ -330,24 +335,44 @@ public class Ysr : MonoBehaviour
 
         if (correct) // if word is correct that means we paired a word from our list 
         {
-            insertedWords.Remove(selectedString);  //removing the selected string from our word list
-            insertedWords.Remove(Reverse(selectedString));
+            var list = WordSearch.Instance.WordList;  // taking list reference for so that we can change the word with striketrough words
 
             if (word.ContainsKey(selectedString))
             {
-                insertedWords.Add(selectedString, true);
+                insertedWords.Remove(selectedString);
+                insertedWords.Add(selectedString, true);  //removing the selected string from our word list
+                var lul = selectedString;               
+                WordSearch.Instance.WordList = list.Replace(lul, kthis(lul));  //replacing the words with strikethrough words
             }
             else if (word.ContainsKey(Reverse(selectedString)))
             {
-                insertedWords.Add(Reverse(selectedString), true);
+                //selectedString = Reverse(selectedString);
+                insertedWords.Remove(selectedString);
+                insertedWords.Add(selectedString, true);  //removing the selected string from our word list
+                var lul2 = Reverse(selectedString);
+                WordSearch.Instance.WordList = list.Replace(lul2, kthis(lul2));
             }
             identified++;
+            WordSearch.Instance.WordsInListFound += 1;
+            WordSearch.Instance.Score += WordSearch.Instance.LevelNo*10;
         }
 
         ready = false;      //again reverting ready to false i.e we are not ready to check the string with inserted words
         selected.Clear();
         selectedString = "";
         correct = false;
+    }
+
+    public string kthis(string word)
+    {
+            string strikethrough = "";
+            foreach (char c in word)
+            {
+                strikethrough = strikethrough + c + '\u0336';
+            //Debug.Log("fk this called");
+            }
+            //Debug.Log(strikethrough);
+            return strikethrough;      
     }
 
     private string Reverse(string word)   // just reversing the word here
@@ -361,7 +386,8 @@ public class Ysr : MonoBehaviour
         return reversed;
     }
 
-    void OnGUI()   // this is default unity Gui function which will shows the words and timer
+    // we will remove this from here cause this is GUI part and we will have our own ui System
+    /*void OnGUI()   // this is default unity Gui function which will shows the words and timer
     {
         GUILayout.BeginVertical();
         GUILayout.BeginHorizontal();
@@ -387,4 +413,5 @@ public class Ysr : MonoBehaviour
         TimeSpan t = TimeSpan.FromSeconds(Mathf.RoundToInt(Time.time - time));
         return String.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
     }
+    */
 }

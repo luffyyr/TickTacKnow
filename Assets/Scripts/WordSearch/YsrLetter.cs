@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class YsrLetter : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class YsrLetter : MonoBehaviour
     public bool identified = false;
     public TextMesh letter;
     public int gridX, gridY;
+    public bool anim = false;
 
     void Start()
     {
         //GetComponent<Renderer>().materials[0].color = WordSearch.Instance.defaultTint;
         GetComponent<Renderer>().materials[0].color = Ysr.Instance.defaultTint;
+        //Rotate();
     }
 
     void Update()
@@ -34,6 +37,15 @@ public class YsrLetter : MonoBehaviour
             if (GetComponent<Renderer>().materials[0].color != Ysr.Instance.identifiedTint)
             {
                 GetComponent<Renderer>().materials[0].color = Ysr.Instance.identifiedTint;
+                if(anim == false)
+                {
+                    anim = true;
+                    var tran = transform.localScale;
+                    //Debug.Log("scaling");
+                    //transform.DOScale(new Vector3(transform.localScale.x + .5f, transform.localScale.y + .5f, transform.localScale.z + .5f), 1f);  // we are animating this through dotween
+                    transform.DOPunchScale(new Vector3(transform.localScale.x - .2f , transform.localScale.y - .2f , transform.localScale.z - .2f), .5f, 10, 0f);//.OnComplete(() => { transform.DOScale(tran, .5f); });   // we are animating this through dotween
+                    // we are animating this through dotween                   
+                }              
             }
             return;
         }
@@ -46,6 +58,22 @@ public class YsrLetter : MonoBehaviour
                 GetComponent<Renderer>().materials[0].color = Ysr.Instance.defaultTint;
             }
         }
+    }
+
+    public void Rotate()
+    {
+        StartCoroutine(CoReset());
+    }
+
+    IEnumerator CoReset()
+    {
+        int choseNumber = 0;
+        yield return new WaitForSeconds(1f);
+        if (Random.value < 0.5f)
+            choseNumber = 360;
+        else
+            choseNumber = -360;
+        transform.DORotate(new Vector3(0f, 0f, choseNumber), 1f, RotateMode.FastBeyond360);
     }
 }
 

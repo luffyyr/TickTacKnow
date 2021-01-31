@@ -31,6 +31,9 @@ public class RegisterPage : MonoBehaviour
     [Header("UIObjects")]
     public GameObject RegistrationPage;
     public GameObject VerificationPage;
+    public GameObject LoadingImg;
+    public GameObject AccountExist;
+    public GameObject NetworkErrorImg;
     public Dropdown SelectSex;
 
     private void Start()
@@ -81,8 +84,10 @@ public class RegisterPage : MonoBehaviour
     public void Submit()  //function will called when we will press the button
     {
         Name = FirstName +" "+ LastName;
-        //Debug.Log(Name);
+        //Debug.Log(Name);  
+        LoadingImg.SetActive(true);
         LogIn(App_ID, Email);
+
         //RegistrationPage.SetActive(false);
         //VerificationPage.SetActive(true);
     }
@@ -113,6 +118,8 @@ public class RegisterPage : MonoBehaviour
         if (request.error != null)
         {
             Debug.Log("Error: " + request.error);
+            NetworkErrorImg.SetActive(true);
+            StartCoroutine(NetworkError());
         }
         else
         {
@@ -124,8 +131,15 @@ public class RegisterPage : MonoBehaviour
             Debug.Log("status" + obj.message);        
             if(obj.status == true)
             {
+                LoadingImg.SetActive(false);
                 RegistrationPage.SetActive(false);
                 VerificationPage.SetActive(true);
+            }
+            if(obj.status == false)
+            {
+                LoadingImg.SetActive(false);
+                AccountExist.SetActive(true);
+                StartCoroutine(UserExists());
             }
         }
     }
@@ -199,11 +213,25 @@ public class RegisterPage : MonoBehaviour
 
     public void CLoseRegistrationPage()
     {
+        LoadingImg.SetActive(false);
+        AccountExist.SetActive(false);
         RegistrationPage.SetActive(false);
     }
 
     public void CloseVerificationPage()
     {
         VerificationPage.SetActive(false);
+    }
+
+    IEnumerator NetworkError()
+    {
+        yield return new WaitForSeconds(2f);
+        NetworkErrorImg.SetActive(false);
+    }
+
+    IEnumerator UserExists()
+    {
+        yield return new WaitForSeconds(2f);
+        AccountExist.SetActive(false);
     }
 }

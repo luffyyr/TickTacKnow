@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 [System.Serializable]
 public class Word
@@ -74,6 +75,8 @@ public class WordScramble : MonoBehaviour
 
     public Transform clockPosition;
     //public GameObject clock;
+    char[] wordchar;
+    public bool canCheck;  // bool to check if we can check our answer or not 
 
     private void Awake()
     {
@@ -97,6 +100,11 @@ public class WordScramble : MonoBehaviour
         InputText.text = inputWord;
         ScoreText.text = score.ToString();
         //RepositionObject();
+        if (Input.GetKeyDown(KeyCode.Space))    // we will null the char[] here
+        {
+            //wordchar = null;
+            StartCoroutine(LOL());
+        }
     }
 
     IEnumerator startGame()
@@ -111,6 +119,7 @@ public class WordScramble : MonoBehaviour
         Round.SetActive(true);
         ResetIcon.SetActive(true);
         CurrentTime = 0f;
+        canCheck = true;
         ShowScramble(currentWord);
     }
 
@@ -146,8 +155,7 @@ public class WordScramble : MonoBehaviour
 
             charObjects[i].index = i;
         }
-        var clock = GameObject.Find("ClockCanvas(Clone)");
-        Destroy(clock);
+       
         Instantiate(ClockPrefab, clockPosition.transform.position, clockPosition.rotation);
     }
 
@@ -238,33 +246,39 @@ public class WordScramble : MonoBehaviour
     }
     public void Verify()
     {      
-        if (inputWord != "")
+        if (inputWord != "" && canCheck)
         {
+            canCheck = false;
+            ResetCanCheck();
             if (inputWord == words[currentWord].word)
             {
+                Arrange();
                 var clock = GameObject.Find("ClockCanvas(Clone)");
                 Destroy(clock);
                 currentWord++;
-                CorrectAnswer();
+                CorrectAnswer();               
             }
             else
             {
-                //open a ui to show wrong answer
+                Arrange();
                 var clock = GameObject.Find("ClockCanvas(Clone)");
                 Destroy(clock);
+                currentWord++;
                 WrongAnswer();
+                
             }
         }
     }
     public void UnSelect()
     {
         firstSelected = null;
-    }
-    public void CheckWord()
+    } // not using this
+   /* public void CheckWord()
     {
         StartCoroutine(CoCheckWord());
-    }
-    IEnumerator CoCheckWord()
+    }  //not using */
+
+    /*IEnumerator CoCheckWord()
     {
         yield return new WaitForSeconds(.5f);
         string word = "";
@@ -278,7 +292,7 @@ public class WordScramble : MonoBehaviour
             currentWord++;
             ShowScramble(currentWord);
         }
-    }
+    } // not using*/
 
     public void CorrectAnswer()
     {
@@ -287,9 +301,13 @@ public class WordScramble : MonoBehaviour
     }
     IEnumerator correctAnswer()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(3f);
         Correct.SetActive(false);
-        ShowScramble(currentWord);
+
+        //if(done == true)
+        {
+            ShowScramble(currentWord);
+        }
         inputWord = "";
         score += 20;
     }
@@ -300,15 +318,15 @@ public class WordScramble : MonoBehaviour
     }
     IEnumerator wrongAnswer()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(3f);
         Wrong.SetActive(false);
-        ShowScramble(currentWord);
         inputWord = "";
         score -= 20;
-        if(score < 0)
+        if (score < 0)
         {
             score = 0;
         }
+        ShowScramble(currentWord);
     }
 
     public void DeletethisChar(CharObject cha)  // we want delete this word when pressed the button and also set interactable to true
@@ -332,12 +350,55 @@ public class WordScramble : MonoBehaviour
 
     public void ResetWord()  // this will reset the word and suffle the scrambled word again
     {
-        var clock = GameObject.Find("ClockCanvas(Clone)");
-        Destroy(clock);
+        //var clock = GameObject.Find("ClockCanvas(Clone)");  // we dont want to destroy clock cause it will give user the infinite time
+        //Destroy(clock);
         inputWord = "";
-        ShowScramble(currentWord);
+        ResetScramble(currentWord);  // instead of using this we have to create a new function similar to this but we have to remove the clock instantiate code 
     }
 
+    void ResetScramble(int index)
+    {
+        charObjects.Clear();
+        foreach (Transform child in container)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (index > words.Length - 1)
+        {
+            Debug.Log("index out of range, please enter range between 0_" + (words.Length - 1).ToString());
+            return;
+        }
+
+        char[] chars = words[index].GetString().ToCharArray(); // converting string to char array 
+        foreach (char c in chars)
+        {
+            CharObject clone = Instantiate(prefab.gameObject).GetComponent<CharObject>();
+            clone.transform.SetParent(container);
+
+            charObjects.Add(clone.Init(c));
+        }
+
+        currentWord = index;
+
+        //////////////////////////////////////////////////////////
+        
+        if (charObjects.Count == 0)
+        {
+            return;
+        }
+
+        float center = (charObjects.Count - 1) / 2;
+        for (int i = 0; i < charObjects.Count; i++)
+        {
+            //charObjects[i].rectTransform.anchoredPosition = Vector2.Lerp(charObjects[i].rectTransform.anchoredPosition,new Vector2((i - center) * space, 0), LerpSpeed * Time.deltaTime);  // setting up the position of the word blocks in ui
+
+            charObjects[i].rectTransform.anchoredPosition = new Vector2((i - center) * space, 0);  // setting up the position of the word blocks in ui
+
+
+            charObjects[i].index = i;
+        }
+    } // this function is only used to scramble word and repostion it , dont use this function except when you want to reset
     public void NextQuestion()
     {
         StartCoroutine(nextQuestion());
@@ -345,7 +406,7 @@ public class WordScramble : MonoBehaviour
 
     IEnumerator nextQuestion()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
         Wrong.SetActive(false);
         int i = currentWord + 1;
         currentWord = i;
@@ -356,5 +417,73 @@ public class WordScramble : MonoBehaviour
         {
             score = 0;
         }
+    }
+
+    public void DetectandDestroyClock()
+    {
+        var clock = GameObject.Find("ClockCanvas(Clone)");
+        Destroy(clock);
+    }
+
+    public void Arrange()
+    {
+        StartCoroutine(LOL());
+    }
+    IEnumerator LOL()
+    {        
+        wordchar = words[currentWord].word.ToCharArray();
+
+        for (int i = 0; i < container.childCount; i++)
+        {
+            Transform var = container.GetChild(i);
+            var x = var.GetComponent<CharObject>().character;
+            //var xIndex = var.GetSiblingIndex();
+
+            if (wordchar[i] != x)
+            {
+                var var_pos = var.transform.position;
+
+                for (int j = i + 1; j < container.childCount; j++)
+                {
+                    Transform var2 = container.GetChild(j);
+                    var y = var2.GetComponent<CharObject>().character;
+
+                    if (wordchar[i] == y)
+                    {
+                        //Debug.Log(y);
+                        //var var2_pos = var2.transform.position;
+                        //var.transform.position = var2.transform.position;
+                        //var2.transform.position = var_pos;
+
+                        // using dotween animations here
+                        var.transform.DOMove(var2.transform.position, .5f, false).SetEase(Ease.InOutElastic);
+                        var.transform.SetSiblingIndex(j);
+                        var2.transform.DOMove(var_pos, .5f, false).SetEase(Ease.InOutElastic);
+                        var2.transform.SetSiblingIndex(i);
+                        yield return new WaitForSeconds(.5f);
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
+
+    public void ResetCanCheck()
+    {
+        StartCoroutine(ResetCheckBtn());
+    }
+
+    IEnumerator ResetCheckBtn()
+    {
+        yield return new WaitForSeconds(3f);
+        canCheck = true;
     }
 }
