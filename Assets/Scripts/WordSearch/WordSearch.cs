@@ -28,7 +28,6 @@ public class WordSearch : MonoBehaviour
     public GameObject Level;
     public GameObject WellDone;
 
-
     void Awake()
     {
         Instance = this;
@@ -51,7 +50,8 @@ public class WordSearch : MonoBehaviour
         if(WordsInList != 0 && WordsInList == WordsInListFound)
         {
             NextLevel = true;
-            SkipLevel();
+            //SkipLevel();
+            LevelNext();
         }
 
         if(NextLevel == true)
@@ -60,6 +60,11 @@ public class WordSearch : MonoBehaviour
             NextLevel = false;
             WellDone.SetActive(true);
             StartCoroutine(WellDoneImg());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           // SliceDrawer.Instance.CreateLine(startPos,endPos);
         }
     }
 
@@ -113,5 +118,19 @@ public class WordSearch : MonoBehaviour
         WellDone.SetActive(false);
         NextLevelImg_No.text = LevelNo.ToString();
         NextLevelImg.SetActive(true);
+    }
+
+    void LevelNext()
+    {
+        var clock = GameObject.Find("Ysr(Clone)");
+        Destroy(clock);
+        WordList = "";
+
+        //var x = WordsInListFound * (LevelNo * 10);  // question answered * levelno 
+        //Score -= x;
+        WordsInList = 0;
+        WordsInListFound = 0;
+        Level.SetActive(false);
+        Restart();
     }
 }

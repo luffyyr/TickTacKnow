@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 738757419544235398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.08, y: 0, z: -0.038006}
-  m_LocalScale: {x: 0.6754159, y: 0.6754159, z: 0.6754159}
+  m_LocalScale: {x: 0.76244086, y: 0.76244086, z: 0.76244086}
   m_Children:
   - {fileID: 738757418001478998}
   m_Father: {fileID: 0}
@@ -221,4 +221,3 @@ MonoBehaviour:
   letter: {fileID: 738757418001479001}
   gridX: 0
   gridY: 0
-  anim: 0

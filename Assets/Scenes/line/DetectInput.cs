@@ -40,8 +40,6 @@ public class DetectInput : MonoBehaviour
         }
     }
 
-
-
     [System.Obsolete]
     void SpawnLine()
     {

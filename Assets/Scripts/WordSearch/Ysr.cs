@@ -44,6 +44,9 @@ public class Ysr : MonoBehaviour
     public float newPosY;
     public Transform thisISThePosition;
 
+    public Vector3 startPos;
+    public Vector3 endPos;
+
     private static Ysr instance;
     public static Ysr Instance
     {
@@ -63,7 +66,7 @@ public class Ysr : MonoBehaviour
         WordSearch.Instance.WordsInList = 0;
         WordSearch.Instance.WordsInListFound = 0;
 
-        thisISThePosition = WordSearch.Instance.GridSystemPos;
+        //thisISThePosition = WordSearch.Instance.GridSystemPos;
         List<string> findLength = new List<string>();
         int count = 0;
 
@@ -104,7 +107,12 @@ public class Ysr : MonoBehaviour
         //time = Time.time;
 
         //transform.position = new Vector3(transform.position.x, newPosY, transform.position.z);
-        transform.position = thisISThePosition.transform.position;
+        //transform.position = thisISThePosition.transform.position;
+        transform.position = WordSearch.Instance.GridSystemPos.position;
+
+        transform.SetParent(WordSearch.Instance.GridSystemPos, true);
+
+        // also have to set scale size if this problem does not solve
 
         // now we will show words to in the UI WordList 
 
@@ -289,6 +297,7 @@ public class Ysr : MonoBehaviour
             if (hit)
             {
                 current = hit.transform.gameObject;  //passing the reference of the gameobject to current 
+                //startPos = hit.transform.position;
             }
             ready = true;  //setting ready to true
         }
@@ -299,6 +308,7 @@ public class Ysr : MonoBehaviour
             if (hit)
             {
                 current = hit.transform.gameObject;   // since we unpressed the mouse button so 
+                //endPos = current.transform.position;
             }
 
             Verify(); //verifying the word we are selecting
@@ -335,6 +345,9 @@ public class Ysr : MonoBehaviour
 
         if (correct) // if word is correct that means we paired a word from our list 
         {
+            //SliceDrawer.Instance.CreateLine(startPos,endPos);
+            //Debug.Log("its called");
+
             var list = WordSearch.Instance.WordList;  // taking list reference for so that we can change the word with striketrough words
 
             if (word.ContainsKey(selectedString))
@@ -354,7 +367,7 @@ public class Ysr : MonoBehaviour
             }
             identified++;
             WordSearch.Instance.WordsInListFound += 1;
-            WordSearch.Instance.Score += WordSearch.Instance.LevelNo*10;
+            WordSearch.Instance.Score += WordSearch.Instance.LevelNo * 10;
         }
 
         ready = false;      //again reverting ready to false i.e we are not ready to check the string with inserted words
@@ -414,4 +427,5 @@ public class Ysr : MonoBehaviour
         return String.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
     }
     */
+
 }

@@ -74,6 +74,22 @@ public class WordScramble : MonoBehaviour
     public GameObject ClockPrefab;
 
     public Transform clockPosition;
+
+    public int currentLevel;
+    public Text currentLevel_Text;
+    public int QuestionedAnswerd;
+    public GameObject gameOverImg;
+    public GameObject CorrectAnswerImg;
+    public GameObject WrongAnswerImg;
+    public int CorrectAnswerNo;
+    public Text CorrectAnswer_Text;
+    public int WrongAnswerNo;
+    public Text WrongAnswerl_Text;
+    public int TotalQuestion;
+    public GameObject RoundUI_Img;
+    public Text RoundUI_Img_Text;
+
+
     //public GameObject clock;
     char[] wordchar;
     public bool canCheck;  // bool to check if we can check our answer or not 
@@ -86,6 +102,11 @@ public class WordScramble : MonoBehaviour
     void Start()
     {
         //ShowScramble(currentWord);   //showing scramble word
+        gameOverImg.SetActive(false);
+        WrongAnswerImg.SetActive(false);
+        CorrectAnswerImg.SetActive(false);
+
+        currentLevel = 1;
         CurrentTime = 0f;
         Instruction.SetActive(true);
         ItsTime();
@@ -97,19 +118,25 @@ public class WordScramble : MonoBehaviour
         /*CurrentTime += Time.deltaTime;
         DisplayTime(CurrentTime);*/
 
+        CorrectAnswer_Text.text = CorrectAnswerNo.ToString();
+        WrongAnswerl_Text.text = WrongAnswerNo.ToString();
         InputText.text = inputWord;
         ScoreText.text = score.ToString();
+        currentLevel_Text.text = currentLevel.ToString();
+
         //RepositionObject();
         if (Input.GetKeyDown(KeyCode.Space))    // we will null the char[] here
         {
             //wordchar = null;
             StartCoroutine(LOL());
         }
+
+        //Check_increaseLevel();
     }
 
     IEnumerator startGame()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         Instruction.SetActive(false);
         ContainerBox.SetActive(true);
         TextBox.SetActive(true);
@@ -120,6 +147,8 @@ public class WordScramble : MonoBehaviour
         ResetIcon.SetActive(true);
         CurrentTime = 0f;
         canCheck = true;
+        CorrectAnswerImg.SetActive(true);
+        WrongAnswerImg.SetActive(true);
         ShowScramble(currentWord);
     }
 
@@ -157,6 +186,7 @@ public class WordScramble : MonoBehaviour
         }
        
         Instantiate(ClockPrefab, clockPosition.transform.position, clockPosition.rotation);
+        TotalQuestion += 1;
     }
 
     /// <summary>
@@ -303,13 +333,20 @@ public class WordScramble : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         Correct.SetActive(false);
-
-        //if(done == true)
+        CorrectAnswerNo += 1;
+        if(CorrectAnswerNo == 5)
+        {
+            Debug.Log("Round Complete");
+            currentLevel += 1;
+            RESETUI();
+            ShowRoundUI();
+        }
+        else
         {
             ShowScramble(currentWord);
         }
         inputWord = "";
-        score += 20;
+        score += currentLevel*10;
     }
     public void WrongAnswer()
     {
@@ -319,14 +356,23 @@ public class WordScramble : MonoBehaviour
     IEnumerator wrongAnswer()
     {
         yield return new WaitForSeconds(3f);
-        Wrong.SetActive(false);
-        inputWord = "";
-        score -= 20;
-        if (score < 0)
+        WrongAnswerNo += 1;
+        if (WrongAnswerNo >= 5)
         {
-            score = 0;
+            Debug.Log("we lost");
+            GameOver();
         }
-        ShowScramble(currentWord);
+        else
+        {
+            Wrong.SetActive(false);
+            inputWord = "";
+            score -= (currentLevel * 10) / 2;
+            if (score < 0)
+            {
+                score = 0;
+            }
+            ShowScramble(currentWord);
+        }       
     }
 
     public void DeletethisChar(CharObject cha)  // we want delete this word when pressed the button and also set interactable to true
@@ -485,5 +531,80 @@ public class WordScramble : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         canCheck = true;
+    }
+
+    public void Check_increaseLevel()
+    {
+        if(CorrectAnswerNo == 5)
+        {
+            Debug.Log("Round Complete");
+            currentLevel += 1;
+            RESETUI();
+        }
+        if(WrongAnswerNo >= 5)
+        {
+            Debug.Log("we lost");
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        var clock = GameObject.Find("ClockCanvas(Clone)");
+        Destroy(clock);
+        gameOverImg.SetActive(true);
+        StartCoroutine(RestartLevel());
+    }
+
+    public void RESETUI()
+    {
+        CorrectAnswerNo = 0;
+        WrongAnswerNo = 0;
+        TotalQuestion = 0;
+    }
+
+    IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        Loader.Load(Loader.Scene.WordScramble);
+    }
+
+    public void ShowRoundUI()
+    {
+        Instruction.SetActive(false);
+        ContainerBox.SetActive(false);
+        TextBox.SetActive(false);
+        //TimeObj.SetActive(true);
+        ScoreObj.SetActive(false);
+        CheckObj.SetActive(false);
+        Round.SetActive(false);
+        ResetIcon.SetActive(false);
+
+        CorrectAnswerImg.SetActive(false);
+        WrongAnswerImg.SetActive(false);
+
+        RoundUI_Img_Text.text = currentLevel.ToString();
+        RoundUI_Img.SetActive(true);
+        StartCoroutine(NextLevel());
+    }
+
+    IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(3f);
+        ShowScramble(currentWord);
+
+        RoundUI_Img.SetActive(false);
+
+        Instruction.SetActive(false);
+        ContainerBox.SetActive(true);
+        TextBox.SetActive(true);
+        //TimeObj.SetActive(true);
+        ScoreObj.SetActive(true);
+        CheckObj.SetActive(true);
+        Round.SetActive(true);
+        ResetIcon.SetActive(true);
+
+        CorrectAnswerImg.SetActive(true);
+        WrongAnswerImg.SetActive(true);
     }
 }

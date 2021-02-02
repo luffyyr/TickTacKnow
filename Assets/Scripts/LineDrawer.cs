@@ -14,12 +14,12 @@ public class LineDrawer : MonoBehaviour
     {
         lineRed = GetComponent<LineRenderer>();
         lineRed.positionCount = 2;
-        transform.position = new Vector3(0, 0, 0);
+        //transform.position = new Vector3(0, 0, 0);
         LineFun();
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,7 +35,7 @@ public class LineDrawer : MonoBehaviour
             Debug.Log(distance);
         }
     } 
-
+    */
 
     void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
     {
@@ -52,7 +52,7 @@ public class LineDrawer : MonoBehaviour
     }
 
     public void LineFun()
-    {  
+    {
         lineRed.SetPosition(0,this.transform.position);
         lineRed.SetPosition(1, new Vector3(1,1,0));
     }
