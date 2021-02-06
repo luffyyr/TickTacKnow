@@ -75,6 +75,7 @@ public class ClockWordScramble : MonoBehaviour
 
         if (hoursString == "00" && Started == true)
         {
+            qiz.Arrange();
             qiz.NextQuestion();
             //Destroy(this.gameObject);
             var clock = GameObject.Find("ClockCanvas(Clone)");

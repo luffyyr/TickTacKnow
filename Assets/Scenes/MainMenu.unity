@@ -2471,7 +2471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd854c046e57134f9fdd7d0ab1e72cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 1
+  sceneName: 6
 --- !u!1 &472998706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,7 +5347,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tic Tack Know
+  m_Text: BigBrain
 --- !u!222 &1170108649
 CanvasRenderer:
   m_ObjectHideFlags: 0

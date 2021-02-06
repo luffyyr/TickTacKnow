@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WordSearch.unity
     guid: f0210432d007ca848bf7f2c96794f80f
+  - enabled: 1
+    path: Assets/Scenes/BigBrain.unity
+    guid: b2b29b47b0c559943896cf7be81dd78f
   m_configObjects: {}

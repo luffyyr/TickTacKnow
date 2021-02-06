@@ -41,6 +41,7 @@ public class QuizManager : MonoBehaviour
         //Debug.Log("button pressed is " + ButtonPressed);
         if (QA.Count > 0)
         {
+          
             currentQuestion = Random.Range(0, QA.Count);   // randomly picking the question from list 
 
             QuestionTxt.text = QA[currentQuestion].questionText;  // Displaying the text in UI gameObject 

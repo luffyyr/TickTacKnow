@@ -14,6 +14,7 @@ public static class Loader
         Demo,
         WordScramble,
         WordSearch,
+        BigBrain,
     }
 
     private static Action onLoaderCallback;

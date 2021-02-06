@@ -452,17 +452,38 @@ public class WordScramble : MonoBehaviour
 
     IEnumerator nextQuestion()
     {
-        yield return new WaitForSeconds(1f);
-        Wrong.SetActive(false);
-        int i = currentWord + 1;
-        currentWord = i;
-        ShowScramble(i);
-        inputWord = "";
-        score -= 20;
-        if (score < 0)
+        yield return new WaitForSeconds(3f);
+        /* Wrong.SetActive(false);
+         int i = currentWord + 1;
+         currentWord = i;
+         ShowScramble(i);
+         inputWord = "";
+         score -= (currentLevel * 10)/2;
+         if (score < 0)
+         {
+             score = 0;
+         }*/
+
+        WrongAnswerNo += 1;
+        if (WrongAnswerNo >= 5)
         {
-            score = 0;
+            Debug.Log("we lost");
+            GameOver();
         }
+        else
+        {
+            Wrong.SetActive(false);
+            inputWord = "";
+            int i = currentWord + 1;
+            currentWord = i;
+            score -= (currentLevel * 10) / 2;
+            if (score < 0)
+            {
+                score = 0;
+            }
+            ShowScramble(currentWord);
+        }
+
     }
 
     public void DetectandDestroyClock()
