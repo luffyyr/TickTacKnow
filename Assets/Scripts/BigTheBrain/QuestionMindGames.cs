@@ -9,7 +9,7 @@ public class QuestionMindGames
     public string questionText;
     public string questionHint;
     public string Answer;
-    public int Time;  // this should be in sec;
+    public int Time;  // this should be in sec;       we will shift this to root class
     public string UserAnswer;
 }
 
@@ -19,7 +19,7 @@ public class Root
 {
     public int levelno;    
     public bool haveTime;
-    public int lvl_Time;
+    public int lvl_Time;  
     public bool haveQuesTime;
-    public List<QuestionMindGames>  Questions;
+    public List<QuestionMindGames> Questions;
 }

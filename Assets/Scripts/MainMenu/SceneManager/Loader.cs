@@ -15,6 +15,7 @@ public static class Loader
         WordScramble,
         WordSearch,
         BigBrain,
+        CrossWords,
     }
 
     private static Action onLoaderCallback;
